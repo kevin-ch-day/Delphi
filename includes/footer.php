@@ -4,7 +4,8 @@
 </main>
 <footer>
     <p>&copy; <?php echo date("Y"); ?> Delphi CyberOps. All rights reserved.</p>
+    <p id="current-time"></p>
 </footer>
-<script src="/delphi/js/script.js"></script>
+
 </body>
 </html>
