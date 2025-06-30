@@ -3,11 +3,18 @@ $config = include __DIR__ . '/config.php';
 $baseUrl = rtrim($config['base_url'] ?? '', '/');
 
 // Auto-detect base path if none provided in config
-// Handles cases where the web root is the repository or the public folder
 if ($baseUrl === '') {
     $scriptDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-    // Remove subdirectories like /api or /pages so resources load correctly
-    $baseUrl = preg_replace('#/(?:api|pages)$#', '', $scriptDir);
+
+    // Remove subdirectories like /api or /pages
+    $scriptDir = preg_replace('#/(?:api|pages)$#', '', $scriptDir);
+
+    // Remove trailing /public if present
+    if (substr($scriptDir, -7) === '/public') {
+        $scriptDir = substr($scriptDir, 0, -7);
+    }
+
+    $baseUrl = $scriptDir ?: '';
 }
 
 if (!defined('BASE_URL')) {
