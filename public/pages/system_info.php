@@ -1,6 +1,6 @@
 <?php
-require_once "../includes/lib.php";
-include_once "../includes/header.php";
+require_once "../../includes/lib.php";
+include_once "../../includes/header.php";
 
 $info = getServerInfo();
 $timestamp = date("Y-m-d H:i:s");
@@ -21,4 +21,4 @@ $timestamp = date("Y-m-d H:i:s");
         </tbody>
     </table>
 </div>
-<?php include_once "../includes/footer.php"; ?>
+<?php include_once "../../includes/footer.php"; ?>
