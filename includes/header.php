@@ -5,9 +5,15 @@ $baseUrl = rtrim($config['base_url'] ?? '', '/');
 // Auto-detect base path if none provided in config
 if ($baseUrl === '') {
     $scriptDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+    // Remove subdirectories like /api or /pages
+    $scriptDir = preg_replace('#/(?:api|pages)$#', '', $scriptDir);
+
+    // Remove trailing /public if present
     if (substr($scriptDir, -7) === '/public') {
         $scriptDir = substr($scriptDir, 0, -7);
     }
+
     $baseUrl = $scriptDir ?: '';
 }
 
