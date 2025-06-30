@@ -1,8 +1,8 @@
 <?php
 /* filename: pages/php_diagnostics.php
  */
-require_once "../includes/lib.php";
-include_once "../includes/header.php";
+require_once "../../includes/lib.php";
+include_once "../../includes/header.php";
 
 // Environment data
 $phpVersion = phpversion();
@@ -63,4 +63,4 @@ $iniSettings = [
     </section>
 </div>
 
-<?php include_once "../includes/footer.php"; ?>
+<?php include_once "../../includes/footer.php"; ?>

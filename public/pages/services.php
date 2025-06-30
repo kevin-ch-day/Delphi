@@ -1,6 +1,6 @@
 <?php
-require_once "../includes/lib.php";
-include_once "../includes/header.php";
+require_once "../../includes/lib.php";
+include_once "../../includes/header.php";
 
 $services = getMonitoredServices();
 ?>
@@ -22,4 +22,4 @@ $services = getMonitoredServices();
         <button id="toggle-status" class="btn" type="button" aria-expanded="true" aria-controls="service-status-list">Toggle System Status</button>
     </section>
 </div>
-<?php include_once "../includes/footer.php"; ?>
+<?php include_once "../../includes/footer.php"; ?>
