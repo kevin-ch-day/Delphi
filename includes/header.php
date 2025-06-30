@@ -2,18 +2,28 @@
 $config = include __DIR__ . '/config.php';
 $baseUrl = rtrim($config['base_url'] ?? '', '/');
 
-// Auto-detect base path if none provided in config. This relies on the
-// current request URI so links remain valid even when the dashboard is served
-// from a subdirectory or when pages/api scripts are executed directly.
+// Auto-detect base path if none provided in config.
+// This ensures compatibility whether the app is served from a subdirectory,
+// public/, or accessed via /api or /pages scripts directly.
 if ($baseUrl === '') {
+    // Use REQUEST_URI for web requests
     $request = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
     $requestDir = rtrim(dirname($request), '/');
-    // Fallback to SCRIPT_NAME when REQUEST_URI is not available (CLI)
+
+    // Fallback to SCRIPT_NAME for CLI contexts or unusual environments
     if ($requestDir === '' && !empty($_SERVER['SCRIPT_NAME'])) {
         $requestDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
     }
-    // Strip trailing /api or /pages so asset links work from those folders
-    $baseUrl = preg_replace('#/(?:api|pages)$#', '', $requestDir);
+
+    // Remove /api or /pages suffix
+    $requestDir = preg_replace('#/(?:api|pages)$#', '', $requestDir);
+
+    // Remove trailing /public if present
+    if (substr($requestDir, -7) === '/public') {
+        $requestDir = substr($requestDir, 0, -7);
+    }
+
+    $baseUrl = $requestDir ?: '';
 }
 
 if (!defined('BASE_URL')) {
