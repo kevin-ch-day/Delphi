@@ -15,6 +15,7 @@ common services.
 
 To run locally place the repository inside your web root (e.g. `/var/www/html/delphi`) and ensure the web server has permission to execute `systemctl` for service checks. The dashboard will automatically determine the correct base path; only set `base_url` in `includes/config.php` if you need to override this detection. The auto-detection works whether your document root is the repository itself or the `public/` subfolder, and it now correctly resolves links when serving pages from the `pages/` or `api/` directories.
 
+
 For improved security set your web server's document root to the `public/`
 directory so that PHP source files in `includes/` remain inaccessible from the
 web. The new structure looks like:

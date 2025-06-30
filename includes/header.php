@@ -2,19 +2,28 @@
 $config = include __DIR__ . '/config.php';
 $baseUrl = rtrim($config['base_url'] ?? '', '/');
 
-// Auto-detect base path if none provided in config
+// Auto-detect base path if none provided in config.
+// This ensures compatibility whether the app is served from a subdirectory,
+// public/, or accessed via /api or /pages scripts directly.
 if ($baseUrl === '') {
-    $scriptDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+    // Use REQUEST_URI for web requests
+    $request = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
+    $requestDir = rtrim(dirname($request), '/');
 
-    // Remove subdirectories like /api or /pages
-    $scriptDir = preg_replace('#/(?:api|pages)$#', '', $scriptDir);
-
-    // Remove trailing /public if present
-    if (substr($scriptDir, -7) === '/public') {
-        $scriptDir = substr($scriptDir, 0, -7);
+    // Fallback to SCRIPT_NAME for CLI contexts or unusual environments
+    if ($requestDir === '' && !empty($_SERVER['SCRIPT_NAME'])) {
+        $requestDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
     }
 
-    $baseUrl = $scriptDir ?: '';
+    // Remove /api or /pages suffix
+    $requestDir = preg_replace('#/(?:api|pages)$#', '', $requestDir);
+
+    // Remove trailing /public if present
+    if (substr($requestDir, -7) === '/public') {
+        $requestDir = substr($requestDir, 0, -7);
+    }
+
+    $baseUrl = $requestDir ?: '';
 }
 
 if (!defined('BASE_URL')) {
