@@ -1,6 +1,6 @@
 <?php
-require_once "includes/lib.php";
-include_once "includes/header.php";
+require_once "../includes/lib.php";
+include_once "../includes/header.php";
 
 $info = getServerInfo();
 $timestamp = date("Y-m-d H:i:s");
@@ -55,4 +55,4 @@ $services = getMonitoredServices();
         </ul>
     </section>
 </div>
-<?php include_once "includes/footer.php"; ?>
+<?php include_once "../includes/footer.php"; ?>

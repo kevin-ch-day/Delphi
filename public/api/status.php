@@ -1,6 +1,6 @@
 <?php
 // API endpoint returning JSON status of monitored services
-require_once __DIR__ . '/../includes/lib.php';
+require_once __DIR__ . '/../../includes/lib.php';
 
 $statuses = getAllServiceStatus();
 
