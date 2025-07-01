@@ -1,47 +1,35 @@
 <?php
-// Delphi LAMP Server Configuration File
+// includes/config.php
 
 return [
 
     /*
-     |--------------------------------------------------------------------------
-     | Base URL
-     |--------------------------------------------------------------------------
-     | This is used to construct relative paths to assets, pages, and API routes.
-     | Leave this empty ('') to enable automatic base path detection at runtime.
-     | Examples:
-     |   '/'                         => Root directory
-     |   '/delphi'                   => Subdirectory
-     |   '/GitHub/Delphi/public'     => Nested path (for XAMPP, Codex, etc.)
-     */
+    |--------------------------------------------------------------------------
+    | Base URL
+    |--------------------------------------------------------------------------
+    | This is used to construct relative paths for assets, navigation links,
+    | and AJAX requests. Leave it empty ('') to enable automatic detection.
+    |
+    | Examples:
+    |   '/'                         => Root web directory
+    |   '/delphi'                   => Application in subdirectory
+    |   '/GitHub/Delphi/public'     => XAMPP-style nested path
+    */
     'base_url' => '',
 
-
     /*
-     |--------------------------------------------------------------------------
-     | Monitored systemd services
-     |--------------------------------------------------------------------------
-     | These services are checked for status (Running / Not Running).
-     | Modify this list based on what’s active on your Fedora or Ubuntu system.
-     */
+    |--------------------------------------------------------------------------
+    | Monitored systemd Services
+    |--------------------------------------------------------------------------
+    | These services are checked for active/running status in the dashboard.
+    | Customize based on your system configuration.
+    */
     'monitored_services' => [
-        'httpd',        // Apache HTTP server
-        'mariadb',      // MySQL/MariaDB
-        'sshd',         // OpenSSH daemon
-        'cockpit',      // Cockpit web UI
-        'firewalld',    // Firewall service
-        'chronyd'       // NTP time sync daemon
+        'httpd',        // Apache HTTP Server
+        'mariadb',      // MariaDB/MySQL
+        'sshd',         // OpenSSH Daemon
+        'cockpit',      // Cockpit Web UI
+        'firewalld',    // Firewall Daemon
+        'chronyd'       // NTP Time Sync
     ],
-
-
-    /*
-     |--------------------------------------------------------------------------
-     | Future Configurable Options
-     |--------------------------------------------------------------------------
-     | These placeholders make it easy to expand configuration later.
-     */
-    // 'timezone' => 'UTC',
-    // 'theme'    => 'dark',
-    // 'debug'    => false,
-
 ];

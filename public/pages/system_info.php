@@ -1,25 +1,43 @@
 <?php
-/* filename: pages/system_info.php */
+// pages/system_info.php
+
 require_once "../../includes/lib.php";
 include_once "../../includes/header.php";
 
+// Gather server info
 $info = getServerInfo();
 $timestamp = date("Y-m-d H:i:s");
 ?>
 <div class="container" role="main">
-    <header class="hero">
-        <h1>System Information</h1>
-        <p>Generated at <time datetime="<?php echo htmlspecialchars($timestamp); ?>"><?php echo htmlspecialchars($timestamp); ?></time></p>
+    <!-- Header -->
+    <header class="hero" aria-labelledby="system-info-title">
+        <h1 id="system-info-title">System Information</h1>
+        <p class="subtitle">
+            Collected on:
+            <time datetime="<?php echo htmlspecialchars($timestamp); ?>">
+                <?php echo htmlspecialchars($timestamp); ?>
+            </time>
+        </p>
     </header>
-    <table class="info-table">
-        <tbody>
-            <?php foreach ($info as $key => $value): ?>
+
+    <!-- Info Table -->
+    <section class="card" aria-label="Server Details">
+        <table class="info-table">
+            <thead>
                 <tr>
-                    <th><?php echo htmlspecialchars(ucwords(str_replace('_', ' ', $key))); ?></th>
-                    <td><?php echo htmlspecialchars($value); ?></td>
+                    <th>Parameter</th>
+                    <th>Value</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($info as $key => $value): ?>
+                    <tr>
+                        <td class="label-cell"><?php echo htmlspecialchars(ucwords(str_replace('_', ' ', $key))); ?></td>
+                        <td class="value-cell"><?php echo htmlspecialchars($value); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </section>
 </div>
 <?php include_once "../../includes/footer.php"; ?>
