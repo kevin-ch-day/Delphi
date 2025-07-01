@@ -1,6 +1,5 @@
 <?php
-/* filename: pages/php_diagnostics.php
- */
+/* filename: pages/php_diagnostics.php */
 require_once "../../includes/lib.php";
 include_once "../../includes/header.php";
 
@@ -32,7 +31,10 @@ $iniSettings = [
         <h2>Important PHP Configuration Settings</h2>
         <table class="table">
             <thead>
-                <tr><th>Setting</th><th>Value</th></tr>
+                <tr>
+                    <th>Setting</th>
+                    <th>Value</th>
+                </tr>
             </thead>
             <tbody>
                 <?php foreach ($iniSettings as $setting => $value): ?>
@@ -49,7 +51,10 @@ $iniSettings = [
         <h2>Loaded PHP Extensions</h2>
         <table class="table">
             <thead>
-                <tr><th>#</th><th>Extension</th></tr>
+                <tr>
+                    <th>#</th>
+                    <th>Extension</th>
+                </tr>
             </thead>
             <tbody>
                 <?php foreach ($loadedExtensions as $i => $ext): ?>

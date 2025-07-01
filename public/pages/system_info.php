@@ -1,4 +1,5 @@
 <?php
+/* filename: pages/system_info.php */
 require_once "../../includes/lib.php";
 include_once "../../includes/header.php";
 
@@ -12,12 +13,12 @@ $timestamp = date("Y-m-d H:i:s");
     </header>
     <table class="info-table">
         <tbody>
-        <?php foreach ($info as $key => $value): ?>
-            <tr>
-                <th><?php echo htmlspecialchars(ucwords(str_replace('_', ' ', $key))); ?></th>
-                <td><?php echo htmlspecialchars($value); ?></td>
-            </tr>
-        <?php endforeach; ?>
+            <?php foreach ($info as $key => $value): ?>
+                <tr>
+                    <th><?php echo htmlspecialchars(ucwords(str_replace('_', ' ', $key))); ?></th>
+                    <td><?php echo htmlspecialchars($value); ?></td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>

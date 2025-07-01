@@ -1,18 +1,47 @@
 <?php
-// Delphi LAMP Server configuration
-// Adjust monitored services for your Fedora server
+// Delphi LAMP Server Configuration File
+
 return [
-    // Base URL for links and assets, without trailing slash.
-    // Leave empty to automatically detect the correct path
+
+    /*
+     |--------------------------------------------------------------------------
+     | Base URL
+     |--------------------------------------------------------------------------
+     | This is used to construct relative paths to assets, pages, and API routes.
+     | Leave this empty ('') to enable automatic base path detection at runtime.
+     | Examples:
+     |   '/'                         => Root directory
+     |   '/delphi'                   => Subdirectory
+     |   '/GitHub/Delphi/public'     => Nested path (for XAMPP, Codex, etc.)
+     */
     'base_url' => '',
 
+
+    /*
+     |--------------------------------------------------------------------------
+     | Monitored systemd services
+     |--------------------------------------------------------------------------
+     | These services are checked for status (Running / Not Running).
+     | Modify this list based on what’s active on your Fedora or Ubuntu system.
+     */
     'monitored_services' => [
-        'httpd',
-        'mariadb',
-        'sshd',
-        'cockpit',
-        'firewalld',
-        'chronyd'
-    ]
+        'httpd',        // Apache HTTP server
+        'mariadb',      // MySQL/MariaDB
+        'sshd',         // OpenSSH daemon
+        'cockpit',      // Cockpit web UI
+        'firewalld',    // Firewall service
+        'chronyd'       // NTP time sync daemon
+    ],
+
+
+    /*
+     |--------------------------------------------------------------------------
+     | Future Configurable Options
+     |--------------------------------------------------------------------------
+     | These placeholders make it easy to expand configuration later.
+     */
+    // 'timezone' => 'UTC',
+    // 'theme'    => 'dark',
+    // 'debug'    => false,
+
 ];
-?>
